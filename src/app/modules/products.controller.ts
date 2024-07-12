@@ -7,7 +7,7 @@ export const productController = {
   createProduct: async (req: Request, res: Response) => {
     try {
       const productData = productValidation.productValidationSchema.parse(
-        req.body
+        req.body,
       );
       const result = await ProductServices.createProduct(productData);
 
@@ -18,6 +18,7 @@ export const productController = {
       });
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
+      console.error("Error creating product:", err);
       res.status(500).json({
         success: false,
         message: "Internal Server Error",
@@ -36,6 +37,7 @@ export const productController = {
       });
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
+      console.error("Error getting all products:", err);
       res.status(500).json({
         success: false,
         message: "Internal Server Error",
@@ -63,6 +65,7 @@ export const productController = {
       });
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
+      console.error("Error getting product by id:", err);
       res.status(500).json({
         success: false,
         message: "Internal Server Error",
@@ -92,6 +95,7 @@ export const productController = {
       });
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
+      console.error("Error updating product:", err);
       res.status(500).json({
         success: false,
         message: "Internal Server Error",
@@ -120,6 +124,7 @@ export const productController = {
       });
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
+      console.error("Error deleting product:", err);
       res.status(500).json({
         success: false,
         message: "Internal Server Error",
